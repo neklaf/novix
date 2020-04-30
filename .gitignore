@@ -1,0 +1,12 @@
+*~
+.bak
+.bash_history
+.bash_logout
+.cache
+.cmake/
+.config/
+.gitconfig
+.gnupg/
+.ssh/
+.wget-hsts
+src/

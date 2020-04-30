@@ -1,0 +1,60 @@
+# ---------------------------------------
+#
+# Kris Nóva <kris@nivenly.com>
+#
+# Kubeadm Config file for Kubernetes 1.18
+#
+# ---------------------------------------
+apiServer:
+  certSANs:
+  #
+  # This is the DNS you will enter for your master
+  # API server
+  #
+  # -----------
+  - "novix"
+  # -----------
+  extraArgs:
+    authorization-mode: Node,RBAC
+    cloud-provider: aws
+    #
+    # Enable/Disable privleged containers
+    # 
+    #allow-privleged: "false"
+  timeoutForControlPlane: 4m0s
+apiVersion: kubeadm.k8s.io/v1beta2
+certificatesDir: /etc/kubernetes/pki
+#
+# This is a very important string and is
+# necessary to match the tags in the console
+# for the instance, routetable, and subnets
+#
+# key: kubernetes.io/cluster/<name>
+# value: <nil>
+# 
+clusterName: novix
+#
+# This is the connection string for the
+# master API server
+#
+# ---------------------------------------
+controlPlaneEndpoint: "novix:443"
+# ---------------------------------------
+dns:
+  type: CoreDNS
+etcd:
+  local:
+    dataDir: /var/lib/etcd
+imageRepository: k8s.gcr.io
+kind: ClusterConfiguration
+kubernetesVersion: v1.18.0
+networking:
+  dnsDomain: cluster.local
+  podSubnet: 10.217.0.0/16 # Required for Cilium
+  serviceSubnet: 10.96.0.0/12 # Required for Cilium
+scheduler: {}
+---
+apiVersion: kubeadm.k8s.io/v1beta2
+kind: InitConfiguration
+localAPIEndpoint:
+  bindPort: 443

@@ -1,0 +1,4 @@
+[submodule "falco"]
+	path = falco
+	url = https://github.com/falcosecurity/falco.git
+	branch = falco-on-arm
