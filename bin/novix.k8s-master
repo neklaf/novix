@@ -1,0 +1,14 @@
+#!/bin/bash
+. /home/novix/.bashrc
+. ${H}/common/common.must-be-root
+echo "--------------------------------------------------"
+echo ""
+echo "HOSTNAME: $(cat /etc/hostname)"
+echo "H: ${H}"
+echo ""
+echo "--------------------------------------------------"
+cd $H/kubernetes
+kubeadm init --config master.yaml
+mkdir -p $HOME/.kube
+cp -i /etc/kubernetes/admin.conf $H/.kube/config
+sudo chown novix:novix $H/.kube/config

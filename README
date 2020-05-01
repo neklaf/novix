@@ -1,0 +1,58 @@
+
+███╗   ██╗ ██████╗ ██╗   ██╗██╗██╗  ██╗
+████╗  ██║██╔═══██╗██║   ██║██║╚██╗██╔╝
+██╔██╗ ██║██║   ██║██║   ██║██║ ╚███╔╝ 
+██║╚██╗██║██║   ██║╚██╗ ██╔╝██║ ██╔██╗ 
+██║ ╚████║╚██████╔╝ ╚████╔╝ ██║██╔╝ ██╗
+╚═╝  ╚═══╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝  ╚═╝
+                                       
+
+Author: Kris Nova <kris@nivenly.com>
+
+Kubernetes Distribution Image Optimized for Security on ARM
+
+
+[ src ]
+----------------------------------------------------------------------
+
+This is where I build packages for the OS.
+Usually I just download them directly from AUR or use pacaur.
+If you build anything manually feel free to do it here.
+
+[ bin ]
+----------------------------------------------------------------------
+Executable NOVIX commands in $PATH
+
+
+[ common ]
+----------------------------------------------------------------------
+Bash logic used throughout NOVIX commands
+
+[ falco ]
+----------------------------------------------------------------------
+
+This is checked out to github.com:falcosecurity/falco-on-arm which is
+a hybrid branch I built specifically for NOVIX
+
+Falco should be installed and running by default.
+Below are some handy things to do to play with Falco.
+
+   View the logs: 
+	sudo journalctl -fu falco
+
+   Start/Stop Falco:
+	sudo systemctl start falco
+	sudo systemctl stop falco
+
+   Run Falco manually:
+	sudo falco
+
+   Falco configuration:
+	/etc/falco
+
+
+
+[ kubernetes ]
+----------------------------------------------------------------------
+
+The directory that holds the Kubernetes lab information and config

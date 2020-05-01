@@ -1,0 +1,4 @@
+#!/bin/bash
+. /home/novix/.bashrc
+. ${H}/common/common.must-be-root
+kubeadm reset -f

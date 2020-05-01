@@ -1,0 +1,52 @@
+apiServer:
+  extraArgs:
+    authorization-mode: "Node,RBAC"
+    
+    # -----------------------------------
+    #
+    # Well this is re-god-damn-diculous.
+    #
+    # Kube proxy requires a privileged
+    # security context to even bootstrap
+    # a Kubernetes cluster.
+    #
+    # So I will write a script to install
+    # with allow-privilege: true.
+    # Then I can disable privileges in
+    # api server manifest after
+    # kubeproxy, and CNI is installed.
+    #
+    # Don't worry. Falco runs at the
+    # linux level so this will never be
+    # a concern with Falco running
+    # alongside Kubernetes.
+    #
+    # Abandon hope all ye who enter here
+    #
+    allow-privileged: "true"
+    #
+    #------------------------------------
+
+  timeoutForControlPlane: 4m0s
+apiVersion: kubeadm.k8s.io/v1beta2
+certificatesDir: /etc/kubernetes/pki
+clusterName: kubernetes
+controllerManager: {}
+dns:
+  type: CoreDNS
+etcd:
+  local:
+    dataDir: /var/lib/etcd
+imageRepository: k8s.gcr.io
+kind: ClusterConfiguration
+kubernetesVersion: v1.18.2
+networking:
+  dnsDomain: cluster.local
+  podSubnet: 192.168.0.0/16
+  serviceSubnet: 10.96.0.0/12
+scheduler: {}
+---
+apiVersion: kubeadm.k8s.io/v1beta2
+kind: InitConfiguration
+localAPIEndpoint:
+  bindPort: 443

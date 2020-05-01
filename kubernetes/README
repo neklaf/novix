@@ -1,0 +1,13 @@
+[ Bootstrapping Kubernetes on NOVIX ]
+
+Set your hostname. I like to use "novix" as it is the default hostname.
+
+  novix.hostname novix
+
+Bootstrap your master node
+
+  novix.k8s-master
+
+On a second node that the output from the first command and call this
+
+  novix.k8s-node <master> <token> <hash>

@@ -1,0 +1,4 @@
+#!/bin/bash
+. /home/novix/.bashrc
+. ${H}/common/common.must-be-root
+kill -1 $(cat /var/run/falco.pid)
