@@ -1,4 +1,5 @@
 #!/bin/bash
-. ${HOME}/common/common.must-be-root
+. /home/novix/.bashrc
+. ${H}/common/common.must-be-root
 hostnamectl set-hostname $1
 echo "${1}" > /etc/hostname

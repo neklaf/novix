@@ -1,0 +1,5 @@
+[ Releasing NOVIX ]
+
+This directory contains artifacts for cutting a release of NOVIX
+
+Run the shutdown script and then make a tarball and gzip that shit
