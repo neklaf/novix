@@ -7,6 +7,7 @@
 .config/
 .gitconfig
 .gnupg/
+.kube
 .ssh/
 .wget-hsts
 src
