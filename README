@@ -6,27 +6,21 @@
 ██║ ╚████║╚██████╔╝ ╚████╔╝ ██║██╔╝ ██╗
 ╚═╝  ╚═══╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝  ╚═╝
                                        
-
 Author: Kris Nova <kris@nivenly.com>
 
 Kubernetes Distribution Image Optimized for Security on ARM
 
+See the original blog at: https://www.nivenly.com/falco-and-kubernetes-on-armv7-using-novix/
 
-[ src ]
+This is an Arch Linux flavor built for secure Kubernetes with Falco on arm architecture.
+
+[ novix ]
 ----------------------------------------------------------------------
 
-This is where I build packages for the OS.
-Usually I just download them directly from AUR or use pacaur.
-If you build anything manually feel free to do it here.
+There are many novix.* commands in $PATH by default.
 
-[ bin ]
-----------------------------------------------------------------------
-Executable NOVIX commands in $PATH
+Explore them by tab hinting novix (type novix and pres TAB a few times)
 
-
-[ common ]
-----------------------------------------------------------------------
-Bash logic used throughout NOVIX commands
 
 [ falco ]
 ----------------------------------------------------------------------
@@ -55,4 +49,16 @@ Below are some handy things to do to play with Falco.
 [ kubernetes ]
 ----------------------------------------------------------------------
 
-The directory that holds the Kubernetes lab information and config
+See the README in /kubernetes for directions running with Kubernetes
+
+Set your hostname. I like to use "novix" as it is the default hostname.
+
+  novix.hostname novix
+
+Bootstrap your master node
+
+  novix.k8s-master
+
+On a second node that the output from the first command and call this
+
+  novix.k8s-node <master> <token> <hash>
