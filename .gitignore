@@ -8,6 +8,7 @@
 .gitconfig
 .gnupg/
 .kube
+.lesshst
 .ssh/
 .wget-hsts
 src
