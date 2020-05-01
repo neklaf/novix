@@ -1,45 +1,37 @@
-# ---------------------------------------
-#
-# Kris Nóva <kris@nivenly.com>
-#
-# Kubeadm Config file for Kubernetes 1.18
-#
-# ---------------------------------------
 apiServer:
-  certSANs:
-  #
-  # This is the DNS you will enter for your master
-  # API server
-  #
-  # -----------
-  - "novix"
-  # -----------
   extraArgs:
-    authorization-mode: Node,RBAC
-    cloud-provider: aws
+    authorization-mode: "Node,RBAC"
+    
+    # -----------------------------------
     #
-    # Enable/Disable privleged containers
-    # 
-    #allow-privleged: "false"
+    # Well this is re-god-damn-diculous.
+    #
+    # Kube proxy requires a privileged
+    # security context to even bootstrap
+    # a Kubernetes cluster.
+    #
+    # So I will write a script to install
+    # with allow-privilege: true.
+    # Then I can disable privileges in
+    # api server manifest after
+    # kubeproxy, and CNI is installed.
+    #
+    # Don't worry. Falco runs at the
+    # linux level so this will never be
+    # a concern with Falco running
+    # alongside Kubernetes.
+    #
+    # Abandon hope all ye who enter here
+    #
+    allow-privileged: "true"
+    #
+    #------------------------------------
+
   timeoutForControlPlane: 4m0s
 apiVersion: kubeadm.k8s.io/v1beta2
 certificatesDir: /etc/kubernetes/pki
-#
-# This is a very important string and is
-# necessary to match the tags in the console
-# for the instance, routetable, and subnets
-#
-# key: kubernetes.io/cluster/<name>
-# value: <nil>
-# 
-clusterName: novix
-#
-# This is the connection string for the
-# master API server
-#
-# ---------------------------------------
-controlPlaneEndpoint: "novix:443"
-# ---------------------------------------
+clusterName: kubernetes
+controllerManager: {}
 dns:
   type: CoreDNS
 etcd:
@@ -47,11 +39,11 @@ etcd:
     dataDir: /var/lib/etcd
 imageRepository: k8s.gcr.io
 kind: ClusterConfiguration
-kubernetesVersion: v1.18.0
+kubernetesVersion: v1.18.2
 networking:
   dnsDomain: cluster.local
-  podSubnet: 10.217.0.0/16 # Required for Cilium
-  serviceSubnet: 10.96.0.0/12 # Required for Cilium
+  podSubnet: 192.168.0.0/16
+  serviceSubnet: 10.96.0.0/12
 scheduler: {}
 ---
 apiVersion: kubeadm.k8s.io/v1beta2

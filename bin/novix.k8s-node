@@ -1,0 +1,20 @@
+#!/bin/bash
+. /home/novix/.bashrc
+. ${H}/common/common.must-be-root
+if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]; then
+    echo "NOVIX Linux: Usage novix.k8s-node <master> <token> <hash>"
+    echo ""
+    echo "Example: novix.k8s-node 10.0.0.44:443 1234 1234abcd"
+    exit 0
+fi
+
+
+echo "--------------------------------------------------"
+echo ""
+echo "HOSTNAME: $(cat /etc/hostname)"
+echo "H: ${H}"
+echo ""
+echo "--------------------------------------------------"
+cd $H/kubernetes
+kubeadm join $1 --token $2 --discovery-token-ca-cert-hash $3 
+

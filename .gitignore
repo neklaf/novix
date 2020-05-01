@@ -9,4 +9,4 @@
 .gnupg/
 .ssh/
 .wget-hsts
-src/
+src

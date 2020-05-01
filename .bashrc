@@ -1,15 +1,63 @@
 #
-# ~/.bashrc
+#
+#
+#  ███╗   ██╗ ██████╗ ██╗   ██╗██╗██╗  ██╗
+#  ████╗  ██║██╔═══██╗██║   ██║██║╚██╗██╔╝
+#  ██╔██╗ ██║██║   ██║██║   ██║██║ ╚███╔╝ 
+#  ██║╚██╗██║██║   ██║╚██╗ ██╔╝██║ ██╔██╗ 
+#  ██║ ╚████║╚██████╔╝ ╚████╔╝ ██║██╔╝ ██╗
+#  ╚═╝  ╚═══╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝  ╚═╝
+#
+#
+#
+# ----------------------------------------------------
+# Settings
+# Author Kris Nova <kris@nivenly.com>
+#
+#
+#
+alias k="kubectl"
+export EDITOR=emacs
+PATH=$PATH:/home/novix/bin
+export H=/home/novix
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# ----------------------------------------------------
+# Funsies and Colors
 #
 
-# If not running interactively, don't do anything
+
+#If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
 alias ls='ls --color=auto'
-
-
-alias k="kubectl"
-export EDITOR=emacs
 
 
 use_color=true
@@ -58,8 +106,3 @@ else
 fi
 
 
-# ----------
-#
-# @kris-nova more hacking
-
-PATH=$PATH:/home/novix/bin

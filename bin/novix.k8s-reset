@@ -1,4 +1,4 @@
 #!/bin/bash
 . /home/novix/.bashrc
 . ${H}/common/common.must-be-root
-journalctl -fu falco
+kubeadm reset -f

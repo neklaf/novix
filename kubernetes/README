@@ -1,71 +1,13 @@
+[ Bootstrapping Kubernetes on NOVIX ]
 
-Author: Kris Nova
+Set your hostname. I like to use "novix" as it is the default hostname.
 
+  novix.hostname novix
 
+Bootstrap your master node
 
+  novix.k8s-master
 
-[ Readme for setting up Kubernetes ]
------------------------------------------------------------------------------------------
-Edit the config files and hostnames to your like.
-To change the hostname see:
-   hostnamectl --help
+On a second node that the output from the first command and call this
 
-I suggest doing something like the following:
-
-  NAME          LOCAL IP ADDR
-  novix-master  10.0.0.36
-  novix-0       10.0.0.37
-  novix-1       10.0.0.38
-  novix-2       10.0.0.39
-
-You can also add entries into /etc/hosts
-
-Edit the config files and have fun
-
-
-
-
-[ Master ]
------------------------------------------------------------------------------------------
-Create a master node (make sure to set a hostname first and update the config!)
-
-  kubeadm init --config=master.yaml
-
-View the token information you will need on the node
-
-  kubeadm token create --print-join-command
-
-
-
-
-
-
-[ Node ]
------------------------------------------------------------------------------------------
-Join a node to the master (make sure to set a hostname first and update the config!)
-
-  kubeadm join --config=node.yaml
-
-
-
-
-
-
-[ Cleaning ]
------------------------------------------------------------------------------------------
-Use these commands to reset your cluster at any time and start over
-
-  kubeadm reset
-  rm -rf /etc/cni
-
-
-
-
-
-
-[ CNI ]
------------------------------------------------------------------------------------------
-In order for your cluster to work you must install a CNI provider so after the master is
-up do the following:
-
-   kubectl create -f https://raw.githubusercontent.com/cilium/cilium/v1.6/install/kubernetes/quick-install.yaml
+  novix.k8s-node <master> <token> <hash>
